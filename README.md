@@ -25,12 +25,12 @@ In theory, this should work with any version of Windows 10 version 2004 (20H1) a
    (You need to "build" this yourself with your local WSL2).
 3. Get "icu.dll" from Windows 11 22H2. Note that you MUST use icu.dll from Windows 11.
    The icu.dll from Windows 10 will NOT work.
-   (I have made a copy of these DLLs in the original.dll.win11.22h2 dir. They are digitally signed by Microsoft.)
 4. Build WsaPatch.dll with source code in this repo.
    (Build with MSVC toolchain, not MinGW or something else.)
 5. Patch icu.dll: add WsaPatch.dll as an import DLL as icu.dll.
-6. Copy patched icu.dll and WsaPatch.dll to WsaClient dir.
-7. Patch AppxManifest.xml.
+   (Binary patch is available in patch dir.)
+7. Copy patched icu.dll and WsaPatch.dll to WsaClient dir.
+8. Patch AppxManifest.xml.
     1. Find TargetDeviceFamily node in AppxManifest.xml.
        ```xml
        <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.120" MaxVersionTested="10.0.22000.120"/>
@@ -56,8 +56,8 @@ In theory, this should work with any version of Windows 10 version 2004 (20H1) a
        </desktop6:Extension>
        ```
 
-8. Run "Run.bat" to register your WSA appx.
-9. You should be able to run WSA now.
+9. Run "Run.bat" to register your WSA appx.
+10. You should be able to run WSA now.
 
 If you don't want to build WsaPatch.dll and patch icu.dll yourself,
 you can download the prebuilt binaries from the [release page](https://github.com/cinit/WSAPatch/releases).
